@@ -1,25 +1,31 @@
 from app import app
+from app.models import User, Car
 from flask import render_template
 
 @app.route('/') 
 def home():
-    return render_template('home.html')
+    return render_template('home.html.j2')
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html.j2')
 
 @app.route('/blog')
 def blog():
-    return render_template('blog.html')
+    return render_template('blog.html.j2')
 
 @app.route('/register')
 def register():
-    return render_template('register.html')
+    return render_template('register.html.j2')
 
 @app.route('/signin')
 def sign_in():
-    return render_template('signin.html')
+    return render_template('signin.html.j2')
+
+@app.route('/cars')
+def cars():
+    all_cars = Car.query.all()
+    return render_template('cars.html.j2', all_cars=all_cars)
 
 
 

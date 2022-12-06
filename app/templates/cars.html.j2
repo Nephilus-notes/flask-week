@@ -1,0 +1,24 @@
+{% extends './layout.html.j2' %}
+{% block content %}
+<h1>Cars:</h1>
+
+{% for car in all_cars %}
+
+<div>
+    <h2>Great Car Available!</h2>  
+    {# <h3>Car Id: {{ id }}</h3> #}
+    <p><small>Sale created by user: #{{ car.user_id }}</small></p>
+    <p><small>Sale created on: {{ car.date_created }}</small></p>
+
+    <p>
+    <strong>Make</strong>: {{ car.make }}
+    <strong>Model</strong>: {{ car.model }}
+    <strong>Color</strong>: {{ car.color }}<br> <br>
+    <strong>Year</strong>: {{ car.year }} 
+    <strong>Sale Price</strong>: ${{ car.price }}
+
+    </p>
+<hr>
+</div>
+{% endfor %}
+{% endblock %}
