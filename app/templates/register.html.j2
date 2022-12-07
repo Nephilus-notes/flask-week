@@ -1,8 +1,31 @@
 {% extends './layout.html.j2' %}
 
-{% block title %}About{% endblock title%}
+{% block title %}Register{% endblock title%}
 
 
 {% block content %}
     <h1>Register</h1>
+    <form action="{{ url_for('auth.create_user') }}" method="POST" >
+     <div class="mb-3">
+        <label for="inputUsername" class="form-label">Username:</label>
+        <input type="text" class="form-control" id="inputUsername" name="inputUsername">
+    </div>
+    <div class="mb-3">
+        <label for="inputEmail" class="form-label">Email:</label>
+        <input type="text" class="form-control" id="inputEmail" name="inputEmail">
+    </div> 
+    <div class="mb-3">
+        <label for="inputFirstname" class="form-label">First name:</label>
+        <input type="text" class="form-control" id="inputFirstname" name="inputFirstname">
+    </div>
+     <div class="mb-3">
+        <label for="inputLastname" class="form-label">Last name:</label>
+        <input type="text" class="form-control" id="inputLastname" name="inputLastname">
+    </div>
+    <div class="mb-3">
+        <label for="inputPassword" class="form-label">Password:</label>
+        <input type="password" class="form-control" id="inputPassword" name="inputPassword">
+    </div>
+    <button type="submit" class="btn btn-dark">Submit</button>
+</form>
 {% endblock content%}

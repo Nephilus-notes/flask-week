@@ -4,7 +4,9 @@
 
 {% block content %}
 <h1>Home</h1>
-
+<a class="btn btn-dark" href="{{url_for('auth.sign_in') }}" role="button">Sign in</a>
+<a class="btn btn-dark" href="{{url_for('auth.register') }}" role="button">Register</a>
+<h3>Already signed in? Make an ad for your car!</h3>
 <form action="{{ url_for('main.create_car') }}" method="POST" >
      <div class="mb-3">
         <label for="inputTitle" class="form-label">Blurb:</label>

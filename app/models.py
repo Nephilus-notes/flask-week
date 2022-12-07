@@ -3,11 +3,11 @@ from datetime import datetime
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(50), unique=True)
-    username = db.Column(db.String(50), unique=True)
+    email = db.Column(db.String(50), unique=True, nullible = False )
+    username = db.Column(db.String(50), unique=True, nullible = False)
     first_name = db.Column(db.String(50))
-    last_name = db.Column(db.String(50))
-    password= db.Column(db.String(200))
+    last_name = db.Column(db.String(50), nullible = False)
+    password= db.Column(db.String(200), nullible = False)
 
 class Car(db.Model):
     id = db.Column(db.Integer, primary_key=True)
