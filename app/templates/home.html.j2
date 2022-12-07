@@ -3,7 +3,58 @@
 {% block title %}Home{% endblock title%}
 
 {% block content %}
-    <h1>Home</h1>
-<p>This is the home page!</p>
+<h1>Home</h1>
+
+<form action="{{ url_for('main.create_car') }}" method="POST" >
+     <div class="mb-3">
+        <label for="inputTitle" class="form-label">Blurb:</label>
+        <input type="text" class="form-control" id="inputTitle" name="inputTitle">
+    </div>
+    <div class="mb-3">
+        <label for="inputMake" class="form-label">Make:</label>
+        <input type="text" class="form-control" id="inputMake" name="inputMake">
+    </div> 
+    <div class="mb-3">
+        <label for="inputModel" class="form-label">Model:</label>
+        <input type="text" class="form-control" id="inputModel" name="inputModel">
+    </div>
+     <div class="mb-3">
+        <label for="inputYear" class="form-label">Year:</label>
+        <input type="text" class="form-control" id="inputYear" name="inputYear">
+    </div>
+     <div class="mb-3">
+        <label for="inputColor" class="form-label">Color:</label>
+        <input type="text" class="form-control" id="inputColor" name="inputColor">
+    </div>
+    <div class="mb-3">
+        <label for="inputPrice" class="form-label">Price:</label>
+        <input type="text" class="form-control" id="inputPrice" name="inputPrice">
+    </div>
+
+    <button type="submit" class="btn btn-dark">Submit</button>
+</form>
+
+{# {{ posts | length }} getting the length of things in ninja #}
+
+{% for car in cars %}
+<div class="card">
+    <div class="card-body">
+    <h5 class="card-title"><a href="{{ url_for('main.car_by_id', id= car.id) }}">{{car.title}}</h5></a>
+      <p><small>{{ car.date_created }}</small></p>
+        <p><strong>Make:</strong>{{ car.make }}
+        <strong>Model:</strong> {{ car.model }}
+        <strong>Year:</strong> {{ car.year }} <br><br>
+        <strong>Color:</strong> {{car.color }}
+        <strong>Price:</strong> ${{ car.price }}
+        </p>
+    </div>
+    <div class="card-footer">
+        Onsale by: {{ car.user.username }}
+    </div>
+
+</div>
+
+
+{% endfor%}
 
 {% endblock content %}
