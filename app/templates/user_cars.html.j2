@@ -1,12 +1,33 @@
 {% extends './layout.html.j2' %}
 
-{% block title %}Home{% endblock title%}
+{% block title %}{{ current_user.username }}'s Cars{% endblock title%}
 
 {% block content %}
-<h1>Home</h1>
-<h3>Make an ad for your car!</h3>
-<button type="submit" class="btn btn-dark"><a class="nav-link active" aria-current="page" href="{{ url_for('main.user_cars') }}">My ads</a>
-</button>
+<h1>Your Cars</h1>
+
+{# {{ posts | length }} getting the length of things in ninja #}
+
+{% for car in cars %}
+<div class="card">
+    <div class="card-body">
+    <h5 class="card-title"><a href="{{ url_for('main.car_by_id', id= car.id) }}">{{car.title}}</h5></a>
+      <p><small>{{ car.date_created }}</small></p>
+        <p><strong>Make:</strong>{{ car.make }}
+        <strong>Model:</strong> {{ car.model }}
+        <strong>Year:</strong> {{ car.year }} <br><br>
+        <strong>Color:</strong> {{car.color }}
+        <strong>Price:</strong> ${{ car.price }}
+        </p>
+    </div>
+    <div class="card-footer">
+        Onsale by: {{ car.user.username }}
+    </div>
+
+</div>
+
+
+{% endfor%}
+<h3>Have another car you want to sell? make an ad for it below.</h3>
 {# <h4>Not signed in yet? <a href="{{ url_for('auth.sign_in') }}"> Sign In</a> and Sell your Car Fast!</h4> #}
 <form action="{{ url_for('main.create_car') }}" method="POST" >
      <div class="mb-3">
@@ -36,28 +57,5 @@
 
     <button type="submit" class="btn btn-dark">Submit</button>
 </form>
-
-{# {{ posts | length }} getting the length of things in ninja #}
-
-{% for car in cars %}
-<div class="card">
-    <div class="card-body">
-    <h5 class="card-title"><a href="{{ url_for('main.car_by_id', id= car.id) }}">{{car.title}}</h5></a>
-      <p><small>{{ car.date_created }}</small></p>
-        <p><strong>Make:</strong>{{ car.make }}
-        <strong>Model:</strong> {{ car.model }}
-        <strong>Year:</strong> {{ car.year }} <br><br>
-        <strong>Color:</strong> {{car.color }}
-        <strong>Price:</strong> ${{ car.price }}
-        </p>
-    </div>
-    <div class="card-footer">
-        Onsale by: {{ car.user.username }}
-    </div>
-
-</div>
-
-
-{% endfor%}
 
 {% endblock content %}
